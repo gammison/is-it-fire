@@ -1,0 +1,14 @@
+{
+	"manifest_version":2,
+	"name": "Faceook Article Injector",
+	"description": "",
+	"version": "0.1",
+	"author":"ADI Labs",
+	"permissions":["storage"],
+	"content_scripts": [
+		{
+			"matches": ["https://www.facebook.com/*"],
+			"js": ["injectArticle.js"]
+		}
+	]
+}
