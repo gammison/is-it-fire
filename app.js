@@ -54,9 +54,9 @@ firebase.initializeApp(firebaseConf);
 server.listen(port);
 
 require('babel-core/register');
-app.set('views', path.join(__dirname, 'public/views'));
+app.set('views', path.join(__dirname, 'template'));
 app.set('view engine', 'jade');
-app.use(express.static(path.join(__dirname, 'public/static')));
+app.use(express.static(path.join(__dirname, 'static')));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({

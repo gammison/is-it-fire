@@ -11,7 +11,7 @@ class Body extends React.Component{
   render(){
     return (
       <div>
-        "Hello"
+        "wtf"
       </div>
     )
   }
