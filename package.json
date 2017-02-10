@@ -2,15 +2,36 @@
   "name": "ADI_Labs_Nodejs_Template",
   "version": "1.0.0",
   "scripts": {
-    "start": "node --optimize_for_size --max_old_space_size=460 --gc_interval=100 app.js"
+    "start": "node --optimize_for_size --max_old_space_size=460 --gc_interval=100 app.js",
+    "deploy": "npm run-script bundle && npm run-script run_prod",
+    "run_prod": "NODE_ENV=production PORT=80 node app",
+    "bundle": "NODE_ENV=production node deploy.js",
+    "webpack": "./node_modules/.bin/webpack-dev-server"
   },
   "engineStrict": true,
   "engines": {
     "node": "7.4.0"
   },
   "dependencies": {
+    "babel": "^6.3.13",
+    "babel-core": "^6.3.21",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
     "body-parser": "^1.16.0",
+    "css-loader": "^0.23.0",
     "express": "^4.13.1",
-    "jade": "~1.11.0"
+    "firebase": "^3.6.9",
+    "jade": "~1.11.0",
+    "jsx-loader": "^0.13.2",
+    "node-jsx": "^0.13.3",
+    "node-libs-browser": "^0.5.2",
+    "node-sass": "^3.2.0",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "reactify": "^1.1.1",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.9.0"
   }
 }
