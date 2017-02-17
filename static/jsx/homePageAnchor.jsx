@@ -1,5 +1,5 @@
 // get css files
-//require('../css/file.css');
+require('../css/main.css');
 
 import React from 'react';
 import ReactDom from 'react-dom';

@@ -54,16 +54,18 @@ firebase.initializeApp(firebaseConf);
 server.listen(port);
 
 require('babel-core/register');
-app.set('views', path.join(__dirname, 'public/views'));
+app.set('views', path.join(__dirname, 'template'));
 app.set('view engine', 'jade');
-app.use(express.static(path.join(__dirname, 'public/static')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+// app.use(bodyParser.urlencoded({
+//   extended: true
+// }));
 
-require("./script/routes")(app);
+const scorer = require('./script/score');
+
+require("./script/routes")(app, scorer);
 
 proxy.on('error', (e) => {
   console.log('Could not connect to proxy, please try again...')

@@ -1,0 +1,21 @@
+html {
+	font-family: 'Helvetica Neue', 'Roboto', Sans;
+}
+.content {
+	margin: 0 auto;
+	width: 70%;
+}
+.fire {
+	color: red;
+	font-weight: 700;
+	font-stretch: 1.5
+}
+.lit-link {
+	margin: 0 auto;
+	padding: 1em 0.5em;
+	width: 80%;
+	font-size: 24px;
+	color: #F44336;
+	border: none;
+	border-bottom: solid 1px orange;
+}
