@@ -5,7 +5,7 @@ const denodeify = require("denodeify");
 const request = denodeify(require("request"));
 const url = require("url");
 const alexa = denodeify(require("alexa-traffic-rank").AlexaWebData);
-const trends = require("google-trends-api");
+// const trends = require("google-trends-api");
 
 const HTTP_HEADER = "http://";
 const HTTPS_HEADER = "https://";
@@ -60,7 +60,7 @@ const getAlexaRank = siteInfo => new Promise((resolve, reject) => {
 
 const getGoogleRank = siteInfo => new Promise((resolve, _) => {
 	const keywords = siteInfo.keywords;
-// console.log(keywords)
+
 	Promise.all(keywords.map(keyword => {
 			// return new Promise((resolve, reject) => {
 				return trends.interestOverTime({keyword: 'Women\'s march'}, (err, res) => {
@@ -162,7 +162,7 @@ module.exports = link => {
 			})
 			.then(info => Promise.all([ // give our scoring funcs the info
 				getAlexaRank(info),
-				getGoogleRank(info),
+				// getGoogleRank(info),
 				getYoutubeRank(info)
 			]))
 			.then(combineResults) // produce a final score
