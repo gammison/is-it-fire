@@ -5,7 +5,7 @@ module.exports = (app, scorer, emailer) => {
     res.render("home");
   });
   app.post("/api/isFire", (req, res) => {
-  	console.dir(req.body);
+  	// console.dir(req.body);
   	scorer(req.body.litLink)
   		.then(score => {
   			res.json({ rating: score });
