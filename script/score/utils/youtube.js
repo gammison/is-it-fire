@@ -1,5 +1,6 @@
 "use strict";
 
+const cheerio = require("cheerio");
 const denodeify = require("denodeify");
 const request = denodeify(require("request"));
 

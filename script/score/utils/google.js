@@ -9,13 +9,13 @@ module.exports = siteInfo => {
     Promise.all(keywords.map(keyword => {
         // return new Promise((resolve, reject) => {
         return trends.interestOverTime({
-          keyword: 'Women\'s march'
+          keyword: keyword
         }, (err, res) => {
           if (err) {
             console.error(err);
             // reject(err);
           } else {
-            console.log('my sweet sweet results', res);
+            console.log("my sweet sweet results", res);
             // resolve(res);
           }
         });

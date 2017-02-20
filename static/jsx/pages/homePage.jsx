@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import io from 'socket.io-client';
+import React, { Component } from "react"
+import io from "socket.io-client";
 
 const socket = io(window.location.host + "/score");
 
@@ -29,11 +29,11 @@ class Body extends Component {
       socket.emit("get_rating", e.target.childNodes[0].value);
 
       // let options = {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json'},
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json"},
       //   body: JSON.stringify({ litLink: e.target.childNodes[0].value})
       // }
-      // fetch(window.location.origin + '/api/isFire', options)
+      // fetch(window.location.origin + "/api/isFire", options)
       //   .then(response => response.json())
       //   .then(score => this.setState({ waiting: false, rating: score.rating }) )
       //   .catch(err => {
@@ -48,10 +48,10 @@ class Body extends Component {
 
   render() {
     return (
-      <div className='content'>
+      <div className="content">
         <h1>Hello, Esteemed Web Wander!</h1>
         <br/>
-        <h3>Paste a link and I'll tell you if it's <span className='fire'>fire</span> or nah.</h3>
+        <h3>Paste a link and I"ll tell you if it"s <span className="fire">fire</span> or nah.</h3>
         { this.state.waiting ?
           <h4> Asking my crytal ball how fire af ur link is </h4> :
         <form onSubmit = { this.submit }>
