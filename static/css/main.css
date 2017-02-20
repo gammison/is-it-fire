@@ -1,21 +1,33 @@
-html {
-	font-family: 'Helvetica Neue', 'Roboto', Sans;
+html
+{
+    font-family: 'Helvetica Neue', 'Roboto', Sans;
 }
-.content {
-	margin: 0 auto;
-	width: 70%;
+.content
+{
+    width: 70%;
+    margin: 0 auto;
 }
-.fire {
-	color: red;
-	font-weight: 700;
-	font-stretch: 1.5
+
+.fire
+{
+    font-weight: 700;
+    font-stretch: 1.5;
+
+    color: red;
 }
-.lit-link {
-	margin: 0 auto;
-	padding: 1em 0.5em;
-	width: 80%;
-	font-size: 24px;
-	color: #F44336;
-	border: none;
-	border-bottom: solid 1px orange;
+
+.lit-link
+{
+    font-size: 24px;
+
+    width: 80%;
+    margin: 0 auto;
+    padding: 1em .5em;
+
+    resize: none;
+
+    color: #f44336;
+    border: none;
+    border-bottom: solid 1px orange;
+    outline: none;
 }
