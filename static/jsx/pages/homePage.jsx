@@ -1,3 +1,5 @@
+"use strict";
+
 import React, { Component } from "react"
 import io from "socket.io-client";
 
@@ -10,7 +12,8 @@ class Body extends Component {
 
     this.state = {
       rating: -1,
-      waiting: false
+      waiting: false,
+      item: ""
     };
   }
 
@@ -20,30 +23,35 @@ class Body extends Component {
     });
   }
 
-  submit = e => {
-      e.preventDefault();
-      e.stopPropagation();
-      // send link to backend
-      this.setState({ waiting: true });
-
-      socket.emit("get_rating", e.target.childNodes[0].value);
-
-      // let options = {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json"},
-      //   body: JSON.stringify({ litLink: e.target.childNodes[0].value})
-      // }
-      // fetch(window.location.origin + "/api/isFire", options)
-      //   .then(response => response.json())
-      //   .then(score => this.setState({ waiting: false, rating: score.rating }) )
-      //   .catch(err => {
-      //     console.log(err);
-      //     this.setState({error: JSON.stringify(err)});
-      //   });
-  }
-
   setScore = score => {
     this.setState({ waiting: false, rating: score })
+  }
+
+  handleChange = e => {
+    e.preventDefault();
+    this.setState({
+      item: e.target.value
+    });
+  }
+
+  submit = e => {
+    if(/\S/.test(this.state.item)){
+      this.setState({ waiting: true });
+
+      socket.emit("get_rating", this.state.item);
+    }
+
+    e.preventDefault();
+
+    this.setState({
+      item: ""
+    });
+  }
+
+  handleKeyDown = e => {
+    if (e.keyCode == 13 ) {
+      this.submit(e);
+    }
   }
 
   render() {
@@ -54,14 +62,20 @@ class Body extends Component {
         <h3>Paste a link and I"ll tell you if it"s <span className="fire">fire</span> or nah.</h3>
         { this.state.waiting ?
           <h4> Asking my crytal ball how fire af ur link is </h4> :
-        <form onSubmit = { this.submit }>
-          <input className="lit-link" tabIndex="0" type="text" name="litLink" placeholder="your lit ass link goes here" />
-        </form>
+          <textarea className="lit-link"
+            type = "text"
+            rows="1"
+            placeholder = "your lit ass link goes her"
+            name="litLink"
+            onChange = { this.handleChange.bind(this) }
+            value = { this.state.item }
+            onKeyDown = { this.handleKeyDown.bind(this) }>
+          </textarea>
         }
         { this.state.rating != -1 ?
           <p> Your raw rating was {this.state.rating}. Scaled, this is a rating of {this.state.rating} </p>
           : null}
-        {this.state.error ? this.state.error: null}
+        { this.state.error ? this.state.error: null }
       </div>
     )
   }

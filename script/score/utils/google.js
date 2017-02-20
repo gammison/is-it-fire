@@ -1,27 +1,20 @@
 "use strict";
 
 const trends = require("google-trends-api");
+const moment = require("moment");
 
 module.exports = siteInfo => {
   return new Promise((resolve, _) => {
     const keywords = siteInfo.keywords;
+    const now = moment().calendar();
 
     Promise.all(keywords.map(keyword => {
         // return new Promise((resolve, reject) => {
         return trends.interestOverTime({
-          keyword: keyword
-        }, (err, res) => {
-          if (err) {
-            console.error(err);
-            // reject(err);
-          } else {
-            console.log("my sweet sweet results", res);
-            // resolve(res);
-          }
+          keyword: keyword,
+          startTime: moment().subtract(7, 'days').toDate()
         });
-        // })
-      }))
-      .then(trendfo => trendfo.reduce((sum, val) => {
+      })).then(trendfo => trendfo.reduce((sum, val) => {
         const {
           "default": {
             timelineData
@@ -32,13 +25,15 @@ module.exports = siteInfo => {
           return sum;
         }
 
-        return sum + timelineData.pop().value; // get most recent popularity value
-      }))
-      .then(sum => sum / keywords.length)
+        return sum + timelineData.reduce((x, y) => {
+          return x + y.value[0];
+        }, 0); // get most recent popularity value
+      }, 0))
+      .then(sum => {
+        return sum / keywords.length;
+      })
       .then(average => resolve(average))
       .catch(err => {
-        // console.log(err);
-
         resolve(-1);
       });
   });
