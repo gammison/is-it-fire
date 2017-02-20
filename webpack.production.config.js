@@ -25,7 +25,7 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.jsx$/,
-      loader: 'babel-loader',
+      loader: 'babel',
       exclude: [nodeModulesPath],
       query: {presets: ['es2015', 'react'] }
     }, {
