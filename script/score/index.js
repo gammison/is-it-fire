@@ -5,9 +5,7 @@ const denodeify = require("denodeify");
 const request = denodeify(require("request"));
 const url = require("url");
 
-const getGoogleRank = require("./google.js");
-const getAlexaRank = require("./alexa.js");
-const getYoutubeRank = require("./youtube.js");
+const { getGoogleRank, getAlexaRank, getYoutubeRank } = require("./utils");
 
 const HTTP_HEADER = "http://";
 const HTTPS_HEADER = "https://";
