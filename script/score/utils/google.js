@@ -4,15 +4,14 @@ const trends = require("google-trends-api");
 const moment = require("moment");
 
 module.exports = siteInfo => {
-  return new Promise((resolve, _) => {
+  return new Promise((resolve) => {
     const keywords = siteInfo.keywords;
-    const now = moment().calendar();
 
     Promise.all(keywords.map(keyword => {
         // return new Promise((resolve, reject) => {
         return trends.interestOverTime({
           keyword: keyword,
-          startTime: moment().subtract(7, 'days').toDate()
+          startTime: moment().subtract(7, "days").toDate()
         });
       })).then(trendfo => trendfo.reduce((sum, val) => {
         const {
@@ -33,7 +32,7 @@ module.exports = siteInfo => {
         return sum / keywords.length;
       })
       .then(average => resolve(average))
-      .catch(err => {
+      .catch(() => {
         resolve(-1);
       });
   });

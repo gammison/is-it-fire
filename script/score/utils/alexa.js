@@ -15,7 +15,7 @@ module.exports = siteInfo => {
           engagement
         } = result;
 
-        if (globalRank == "-") {
+        if (globalRank === "-") {
           // alexa has no info on this website
           resolve(-1);
         } else {

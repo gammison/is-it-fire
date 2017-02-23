@@ -19,7 +19,7 @@ const formatLink = link => {
 	return checkProtocol(link) ? link : HTTPS_HEADER + (link.startsWith(WWW_HEADER) ? link.substring(4) : link);
 };
 
-const combineResults = scores => new Promise((resolve, _) => {
+const combineResults = scores => new Promise(resolve => {
 	resolve(scores.reduce((sum, val) => sum + val) / scores.length);
 });
 
