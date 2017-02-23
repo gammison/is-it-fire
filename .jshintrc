@@ -5,9 +5,13 @@
   "noempty"       : false,
   "quotmark"      : "double",
   "unused"        : true,
-  "strict"        : true,
+  "strict"        : "global",
   "maxlen"        : 120,
-
   "esversion"     : 6,
-  "camelcase"     : false
+  "camelcase"     : false,
+  "curly"         : true,
+  "eqeqeq"        : true,
+  "nocomma"       : true,
+  "undef"         : true,
+  "unused"        : true
 }

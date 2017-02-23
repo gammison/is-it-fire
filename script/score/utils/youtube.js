@@ -6,7 +6,7 @@ const request = denodeify(require("request"));
 
 module.exports = siteInfo => {
   return new Promise((resolve, reject) => {
-    const AVG_YOUTUBE_VIEWS = 10000;
+    // const AVG_YOUTUBE_VIEWS = 10000;
 
     // Make sure site is from youtube, else return -1
     // to indicate this score should not be part of the average
@@ -17,9 +17,9 @@ module.exports = siteInfo => {
     } = siteInfo;
 
     if (siteName.indexOf("youtube") !== 0 || siteName.indexOf("youtu") !== 0) {
-      const likeDislikeLink = option => {
-        return `.like-button-renderer-${option}-button > .yt-uix-button-content`;
-      };
+      // const likeDislikeLink = option => {
+      //   return `.like-button-renderer-${option}-button > .yt-uix-button-content`;
+      // };
 
       request(link)
         .then(response => {
@@ -29,9 +29,9 @@ module.exports = siteInfo => {
             .first().text()
             .replace(/,|views|\s/ig, "");
 
-          const likes = body(likeDislikeLink("like")).first().text();
+          // const likes = body(likeDislikeLink("like")).first().text();
 
-          const disLikes = body(likeDislikeLink("dislike")).first().text();
+          // const disLikes = body(likeDislikeLink("dislike")).first().text();
 
           const score = parseInt(views);
 

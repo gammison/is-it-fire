@@ -8,4 +8,4 @@ module.exports = {
   "getGoogleRank" : getGoogleRank,
   "getAlexaRank" : getAlexaRank,
   "getYoutubeRank" : getYoutubeRank
-}
+};

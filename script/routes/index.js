@@ -1,6 +1,6 @@
 "use strict";
 
-module.exports = (app, scorer, emailer) => {
+module.exports = (app, scorer) => {
   app.get("/", (_, res) => {
     res.render("home");
   });

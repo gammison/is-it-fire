@@ -6,7 +6,8 @@
     "deploy": "npm run-script bundle && npm run-script run_prod",
     "run_prod": "NODE_ENV=production PORT=80 node app",
     "bundle": "NODE_ENV=production node deploy.js",
-    "webpack": "./node_modules/.bin/webpack-dev-server"
+    "webpack": "./node_modules/.bin/webpack-dev-server",
+    "test": "./node_modules/jshint/bin/jshint ./script app.js"
   },
   "engineStrict": true,
   "engines": {
@@ -36,6 +37,7 @@
     "firebase": "^3.6.9",
     "google-trends-api": "^4.0.3",
     "jade": "~1.11.0",
+    "jshint": "^2.9.4",
     "jsx-loader": "^0.13.2",
     "moment": "^2.17.1",
     "node-jsx": "^0.13.3",
