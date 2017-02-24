@@ -56,7 +56,7 @@ require("babel-core/register");
 server.listen(port);
 
 app.set("views", path.join(__dirname, "template"));
-app.set("view engine", "jade");
+app.set("view engine", "pug");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(session({
   secret: "pleasedothis",
