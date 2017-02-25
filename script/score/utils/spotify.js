@@ -1,25 +1,29 @@
 const spotifyApi = require("spotify-web-api-node");
 const client = new spotifyApi();
 
-module.exports = siteInfo => new Promise((resolve, reject) => {
-	const {
-      link,
-      siteName,
-      loc
-    } = siteInfo;
-    if (siteName.includes("open.spotify.com")) {
+module.exports = siteInfo => new Promise(resolve => {
+	const {link, siteName, loc } = siteInfo; 
+	if (siteName.includes("open.spotify.com")) {
     	// get id of link (last part of URL)
     	const contentId = loc.path.split('/').pop();
-    	( loc.path.includes("album") ? client.getAlbum(contentId)
-    	: loc.path.includes("track") ? client.getTrack(contentId)
-    	: loc.path.includes("artist") ? client.getArtist(contentId)
-    	: Promise.reject('spotify link was not an album, track, or artist') )
-    	.then(data => resolve(data.body.popularity))
+
+    	let request;
+    	if (loc.path.includes("album"))
+    		request = client.getAlbum(contentId);
+    	else if (loc.path.includes("track"))
+    		request = client.getTrack(contentId);
+    	else if (loc.path.includes("artist"))
+    		request = client.getArtist(contentId);
+    	else 
+    		request = Promise.reject("spotify link was not an album, track, or artist");
+    	
+    	request.then(data => resolve(data.body.popularity))
     	.catch(error => {
     		console.log(error);
     		resolve(-1);
     	})
     } else {
+    	// Not a spotify link, sentinel value
     	resolve(-1)
     }
 });
