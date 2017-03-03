@@ -16,7 +16,7 @@ module.exports = siteInfo => {
       siteName
     } = siteInfo;
 
-    if (siteName.indexOf("youtube") !== 0 || siteName.indexOf("youtu") !== 0) {
+    if (siteName.includes("youtube") || siteName.includes("youtu")) {
       // const likeDislikeLink = option => {
       //   return `.like-button-renderer-${option}-button > .yt-uix-button-content`;
       // };
