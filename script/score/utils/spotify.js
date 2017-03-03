@@ -1,14 +1,14 @@
 "use strict";
 
 const spotifyApi = require("spotify-web-api-node");
-const { getAlbum, getTrack, getArtist } = new spotifyApi();
+const client = new spotifyApi();
 
 const SPOTIFY_MAIN_URL = "open.spotify.com";
 
 const handlers = {
-  "album": getAlbum,
-  "track": getTrack,
-  "artist": getArtist
+  "album": "getAlbum",
+  "track": "getTrack",
+  "artist": "getArtist"
 };
 
 const rejectSpotify = () => {
@@ -25,13 +25,9 @@ module.exports = siteInfo => new Promise(resolve => {
 
   if (siteName.includes(SPOTIFY_MAIN_URL)) {
     const contentId = path.split("/").pop();
-
     const request = (() => {
-      const matches = Object.entries(handlers).filter(([k, ]) => {
-        path.includes(k);
-      });
-
-      return matches.length > 0 ? matches[0](contentId) : rejectSpotify();
+      const matches = Object.entries(handlers).filter(([k, ]) => path.includes(k));
+      return matches.length > 0 ? client[matches[0][1]](contentId) : rejectSpotify();
     })();
 
     request.then(data => resolve(data.body.popularity))

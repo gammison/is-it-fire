@@ -49,6 +49,7 @@
     "reactify": "^1.1.1",
     "socket.io": "^1.7.3",
     "socket.io-client": "^1.7.3",
+    "soundcloud-node-es6": "0.0.1",
     "spotify-web-api-node": "^2.3.6",
     "style-loader": "^0.13.0",
     "uuid": "^3.0.1",
