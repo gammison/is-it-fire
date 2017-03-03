@@ -5,7 +5,7 @@ const denodeify = require("denodeify");
 const request = denodeify(require("request"));
 const url = require("url");
 
-const { getGoogleRank, getAlexaRank, getYoutubeRank } = require("./utils");
+const { getGoogleRank, getAlexaRank, getYoutubeRank, getSpotifyRank } = require("./utils");
 
 const HTTP_HEADER = "http://";
 const HTTPS_HEADER = "https://";
@@ -49,7 +49,8 @@ module.exports = link => {
 			.then(info => Promise.all([ // give our scoring funcs the info
 				getAlexaRank(info),
 				getGoogleRank(info),
-				getYoutubeRank(info)
+				getYoutubeRank(info),
+				getSpotifyRank(info)
 			]))
 			.then(combineResults) // produce a final score
 			.then(finalScore => resolve(finalScore)) // send rating to user
